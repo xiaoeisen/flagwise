@@ -3,10 +3,10 @@
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--font-display); font-weight: 900; font-stretch: 125%; font-size: 1.2rem; letter-spacing: .02em; text-transform: uppercase; margin-right: auto; }
 .brand-mark { display: block; flex: none; width: 34px; height: 34px; border-radius: 9px; }
 .nav { display: flex; gap: 4px; }
-.nav a { text-decoration: none; padding: .4rem .8rem; border-radius: 8px; font-weight: 600; font-size: .95rem; color: var(--muted); }
+.nav a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; text-decoration: none; padding: .4rem .8rem; border-radius: 8px; font-weight: 600; font-size: .95rem; color: var(--muted); }
 .nav a:hover { color: var(--ink); background: var(--surface-2); }
 .nav a[aria-current="page"] { color: var(--ink); background: var(--surface-2); }
-@media (max-width: 560px) { .nav { order: 3; flex: 1 0 100%; } }
+@media (max-width: 560px) { .nav { order: 3; flex: 1 0 100%; justify-content: space-between; } .nav a { flex: 1; } }
 
 /* hero */
 .hero { position: relative; isolation: isolate; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 32px; align-items: center; margin-bottom: 36px; }
@@ -25,7 +25,7 @@
 .flag-gallery-card:nth-child(even) { z-index: 2; transform: translateY(5px) rotate(.35deg); }
 .flag-gallery-card:nth-child(odd) { transform: translateY(-3px) rotate(-.3deg); }
 .flag-gallery-card img { display: block; width: 100%; height: 100%; object-fit: cover; }
-@media (max-width: 760px) { .hero { grid-template-columns: minmax(0, 1fr); } .flag-gallery-mount { order: -1; } }
+@media (max-width: 760px) { .hero { grid-template-columns: minmax(0, 1fr); gap: 22px; margin-bottom: 26px; } .flag-gallery-mount { order: -1; } }
 @media (prefers-reduced-motion: reduce) { .typing-char { opacity: 1; animation: none; } }
 
 /* setup */
@@ -34,7 +34,7 @@
 .setup .grp.wide { grid-column: 1 / -1; }
 .lbl { font-family: var(--font-mono); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chip { padding: .4rem .8rem; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); font-size: .9rem; font-weight: 500; }
+.chip { min-height: 44px; padding: .4rem .8rem; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); font-size: .9rem; font-weight: 500; }
 .chip:hover { border-color: var(--accent); }
 .chip[aria-checked="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
 .switch { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; font-size: .95rem; }
@@ -62,7 +62,21 @@
 @keyframes mode-sparkle { from { opacity: 0; transform: translate(0, 0) scale(.3); } 25% { opacity: .9; } to { opacity: 0; transform: translate(var(--spark-x), var(--spark-y)) scale(0); } }
 @keyframes mode-ripple { from { opacity: .7; transform: scale(.08); } to { opacity: 0; transform: scale(1); } }
 @media (max-width: 860px) { .modes { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: minmax(142px, auto); } }
-@media (max-width: 560px) { .modes { grid-template-columns: minmax(0, 1fr); grid-auto-rows: auto; } .mode:nth-child(1), .mode:nth-child(5) { grid-column: auto; } .mode { min-height: 140px; } }
+@media (max-width: 560px) {
+  .modes { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: auto; gap: 8px; }
+  .mode:nth-child(1), .mode:nth-child(5) { grid-column: auto; }
+  .mode { min-height: 0; padding: 14px 12px; border-radius: 13px; }
+  .mode h3 { font-size: 1.05rem; }
+  .mode p { font-size: .86rem; }
+  .mode .meta { font-size: .68rem; overflow-wrap: anywhere; }
+  .setup { grid-template-columns: minmax(0, 1fr); gap: 14px; padding: 14px; margin-bottom: 14px; }
+  .setup .grp.wide { grid-column: auto; }
+}
+@media (max-width: 360px) { .mode { padding: 12px 10px; } .mode h3 { font-size: 1rem; } .mode p { font-size: .82rem; } }
+@media (hover: none) {
+  .mode:hover:not([disabled]), .tile:hover { border-color: var(--line); box-shadow: none; }
+  .mode:hover:not([disabled])::before, .mode:hover:not([disabled])::after { opacity: 0; }
+}
 @media (prefers-reduced-motion: reduce) { .mode { transform: none !important; transition: none; } .mode::before, .mode::after { transition: none; } .mode-particle, .mode-ripple { display: none; } }
 .pool-note { grid-column: 1 / -1; font-size: .8rem; }
 .credit { margin-top: 36px; font-size: .8rem; color: var(--muted); }

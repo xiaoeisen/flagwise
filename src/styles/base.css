@@ -34,7 +34,7 @@ a { color: inherit; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 
 /* buttons */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: .7rem 1.15rem; border-radius: 999px; border: 1px solid var(--line); background: var(--glass); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); font-weight: 600; line-height: 1.2; transition: transform .2s ease, background .2s ease, border-color .2s ease; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 44px; padding: .7rem 1.15rem; border-radius: 999px; border: 1px solid var(--line); background: var(--glass); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); font-weight: 600; line-height: 1.2; transition: transform .2s ease, background .2s ease, border-color .2s ease; }
 .btn:hover { border-color: var(--accent); }
 .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); box-shadow: 0 0 30px color-mix(in srgb, var(--accent) 20%, transparent); }
 .btn.primary:hover { filter: brightness(1.04); transform: translateY(-2px); }
@@ -49,5 +49,9 @@ a { color: inherit; }
 .eyebrow { font-family: var(--font-mono); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .bar { height: 8px; background: var(--surface-2); border-radius: 99px; overflow: hidden; }
 .bar > i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 99px; transition: width .35s ease; }
-@media (max-width: 600px) { body { padding: 8px 8px 32px; } .shell { min-height: calc(100svh - 16px); padding: 18px 14px; border-radius: 28px; } }
+@media (max-width: 600px) {
+  body { padding-block: 8px 32px; padding-left: max(8px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px)); }
+  .shell { min-height: calc(100svh - 40px); padding: 18px 14px; border-radius: 28px; }
+}
+@media (max-width: 380px) { .shell { padding: 14px 12px; border-radius: 22px; } }
 @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }

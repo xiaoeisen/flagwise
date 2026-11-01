@@ -68,3 +68,28 @@ body.quiz-active .play-view { display: flex; flex-direction: column; height: 100
 body.quiz-active .flagbox { width: min(100%, 420px, 38svh); }
 body.quiz-active .play-view:has(.feedback:not([hidden])) .stage { padding: 6px; }
 body.quiz-active .play-view:has(.feedback:not([hidden])) .flagbox { width: min(100%, 300px, 26svh); }
+
+@media (max-width: 600px) {
+  .hud { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 10px; }
+  .hud > .btn { grid-column: 1; grid-row: 1; }
+  .prog { grid-column: 1 / -1; grid-row: 2; }
+  .hud-stats { grid-column: 2; grid-row: 1; justify-content: flex-end; gap: 4px 8px; font-size: .78rem; }
+  .options { gap: 6px; }
+  .opt { gap: 6px; padding: .4rem .5rem; font-size: .9rem; }
+  .opt .key { width: 1.35rem; height: 1.35rem; }
+  .stage { padding: 10px; }
+  .flagbox { margin-left: 10px; }
+  .type-row { gap: 6px; }
+  .type-row input { padding: .6rem .7rem; }
+  .type-tools { gap: 6px 14px; }
+  .feedback { gap: 8px; padding: 10px; }
+  .fb-text { flex-basis: 180px; }
+  .fb-title { font-size: 1.1rem; }
+  .fb-sub { font-size: .85rem; }
+  .linklike { min-height: 44px; }
+  body.quiz-active { padding-top: max(8px, env(safe-area-inset-top, 0px)); padding-bottom: max(8px, env(safe-area-inset-bottom, 0px)); }
+}
+@media (max-width: 360px) {
+  .opt { font-size: .84rem; }
+  .hud-stats { font-size: .72rem; }
+}
