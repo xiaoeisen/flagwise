@@ -1,0 +1,5 @@
+node_modules
+dist
+dist-artifact
+*.tmp.*
+.DS_Store

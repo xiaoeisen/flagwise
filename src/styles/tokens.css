@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+/* Obsidian surfaces and warm ivory accents, with an explicit light theme. */
+:root {
+  --bg: #000000;
+  --surface: #0C0C0C;
+  --surface-2: rgba(255, 255, 255, .035);
+  --ink: #EBEBEB;
+  --muted: rgba(235, 235, 235, .62);
+  --line: rgba(255, 255, 255, .10);
+  --accent: #F2EBDD;
+  --accent-ink: #0C0C0C;
+  --accent-soft: rgba(242, 235, 221, .10);
+  --signal: #F2EBDD;
+  --signal-ink: #0C0C0C;
+  --good: #65D6A0;
+  --good-soft: rgba(16, 185, 129, .14);
+  --bad: #FF8078;
+  --bad-soft: rgba(255, 92, 82, .14);
+  --pole: rgba(242, 235, 221, .52);
+  --scrim: rgba(0, 0, 0, .78);
+  --shadow: 0 18px 60px rgba(0, 0, 0, .5);
+  --glass: rgba(255, 255, 255, .03);
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+:root[data-theme="light"] {
+  --bg: #E9E7E1;
+  --surface: rgba(255, 255, 255, .76);
+  --surface-2: rgba(20, 19, 17, .045);
+  --ink: #171715;
+  --muted: rgba(23, 23, 21, .62);
+  --line: rgba(23, 23, 21, .12);
+  --accent: #292822;
+  --accent-ink: #F2EBDD;
+  --accent-soft: rgba(41, 40, 34, .09);
+  --signal: #F2EBDD;
+  --signal-ink: #171715;
+  --good: #15794E;
+  --good-soft: #E1F0E8;
+  --bad: #B53832;
+  --bad-soft: #F7E5E2;
+  --pole: #8F8A7F;
+  --scrim: rgba(0, 0, 0, .48);
+  --shadow: 0 18px 50px rgba(25, 24, 20, .12);
+  --glass: rgba(255, 255, 255, .64);
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] { color-scheme: dark; }

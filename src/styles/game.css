@@ -1,0 +1,70 @@
+/* play */
+.hud { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-bottom: 10px; }
+.prog { flex: 1 1 180px; display: grid; gap: 4px; min-width: 0; }
+.prog-text { font-size: .8rem; color: var(--muted); }
+.hud-stats { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; font-size: .85rem; color: var(--muted); }
+.hud-stats b { color: var(--ink); font-weight: 500; font-size: 1rem; }
+.pip { display: inline-block; width: 18px; height: 14px; background: var(--signal); clip-path: polygon(0 0, 100% 50%, 0 100%); margin-left: 4px; vertical-align: -2px; }
+.pip.off { background: var(--line); }
+.pen { color: var(--bad); margin-left: 6px; font-style: normal; }
+.stage { display: grid; place-items: center; padding: clamp(10px, 2vw, 18px); background: var(--surface-2); border-radius: 14px; margin-bottom: 10px; }
+.flagbox { position: relative; width: min(100%, 420px); margin-left: 14px; perspective: 1200px; }
+.flagbox::before { content: ""; position: absolute; left: -14px; top: -16px; bottom: -22px; width: 6px; border-radius: 3px; background: var(--pole); }
+.flagbox::after { content: ""; position: absolute; left: -16px; top: -24px; width: 10px; height: 10px; border-radius: 50%; background: var(--signal); }
+.flagbox img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; background: var(--surface); box-shadow: 0 0 0 1px var(--line), var(--shadow); }
+.flagbox img.flag-swap-in { animation: flag-swap-in .48s cubic-bezier(.2, .75, .25, 1) both; }
+.flagbox img.flag-swap-out { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; pointer-events: none; animation: flag-swap-out .48s cubic-bezier(.2, .75, .25, 1) both; }
+@keyframes flag-swap-in {
+  from { opacity: .65; transform: translate3d(30px, -16px, -50px) rotateY(-8deg) skewY(-2deg); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) rotateY(0) skewY(0); }
+}
+@keyframes flag-swap-out {
+  from { opacity: 1; transform: translate3d(0, 0, 0) rotateX(0); }
+  to { opacity: 0; transform: translate3d(-16px, 38px, -40px) rotateX(7deg); }
+}
+@media (max-height: 800px) { .flagbox { width: min(100%, 340px); } }
+@media (max-height: 680px) { .flagbox { width: min(100%, 280px); } }
+@media (prefers-reduced-motion: reduce) { .flagbox img { animation: none !important; } .bar > i { transition: none; } }
+
+.options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.opt { display: flex; align-items: center; gap: 8px; text-align: left; min-height: 2.9rem; padding: .45rem .65rem; border-radius: 12px; border: 1.5px solid var(--line); background: var(--surface); font-weight: 600; min-width: 0; }
+.opt:hover:not([disabled]) { border-color: var(--accent); }
+.opt .key { flex: none; display: grid; place-items: center; width: 1.45rem; height: 1.45rem; border-radius: 6px; background: var(--surface-2); color: var(--muted); font-size: .75rem; }
+.opt .nm { min-width: 0; overflow-wrap: anywhere; }
+.opt[disabled] { cursor: default; }
+.opt.good { background: var(--good-soft); border-color: var(--good); }
+.opt.good .key { background: var(--good); color: var(--bg); }
+.opt.bad { background: var(--bad-soft); border-color: var(--bad); }
+.opt.bad .key { background: var(--bad); color: var(--bg); }
+.opt.dim { opacity: .5; }
+
+.typebox { display: grid; gap: 8px; }
+.type-row { display: flex; gap: 10px; }
+.type-row input { flex: 1; min-width: 0; padding: .65rem .85rem; border-radius: 12px; border: 1.5px solid var(--line); background: var(--surface); font-size: 1rem; }
+.type-row input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.type-row input:disabled { opacity: .7; }
+.type-tools { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+.hint { font-family: var(--font-mono); font-size: .85rem; color: var(--muted); }
+.sug { list-style: none; margin: 0; padding: 4px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); display: grid; }
+.sug li { padding: .55rem .75rem; border-radius: 8px; cursor: pointer; }
+.sug li[aria-selected="true"], .sug li:hover { background: var(--accent-soft); }
+
+.feedback { margin-top: 10px; padding: 10px 12px; border-radius: 12px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; justify-content: space-between; border: 1px solid transparent; }
+.feedback.ok { background: var(--good-soft); border-color: var(--good); }
+.feedback.no { background: var(--bad-soft); border-color: var(--bad); }
+.fb-text { min-width: 0; flex: 1 1 220px; }
+.fb-title { font-family: var(--font-display); font-weight: 800; font-stretch: 110%; font-size: 1.25rem; }
+.fb-sub { font-size: .92rem; color: var(--muted); overflow-wrap: anywhere; }
+.fb-sub + .fb-sub { margin-top: 2px; }
+
+/* Keep the active quiz within the viewport */
+html.quiz-active, body.quiz-active { height: 100svh; overflow: hidden; overscroll-behavior: none; }
+body.quiz-active { padding-block: 8px; }
+body.quiz-active .shell { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+body.quiz-active .top { flex: none; gap: 8px 12px; padding-bottom: 8px; margin-bottom: 10px; }
+body.quiz-active .nav { display: none; }
+body.quiz-active .shell > main { flex: 1; min-height: 0; overflow: hidden; }
+body.quiz-active .play-view { display: flex; flex-direction: column; height: 100%; min-height: 0; overflow: hidden; }
+body.quiz-active .flagbox { width: min(100%, 420px, 38svh); }
+body.quiz-active .play-view:has(.feedback:not([hidden])) .stage { padding: 6px; }
+body.quiz-active .play-view:has(.feedback:not([hidden])) .flagbox { width: min(100%, 300px, 26svh); }

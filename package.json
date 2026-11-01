@@ -1,0 +1,43 @@
+{
+  "name": "flagwise",
+  "private": true,
+  "version": "2.0.0",
+  "description": "Flag quiz PWA: 197 countries, six game modes, spaced repetition, offline support",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run check:layers && tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "build:artifact": "npm run check:layers && tsc --noEmit && vite build --mode artifact && node scripts/to-artifact.mjs",
+    "assets:flags": "node scripts/build-flags.mjs",
+    "assets:icons": "node scripts/build-icons.mjs",
+    "check:layers": "node scripts/check-layers.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "canvas-confetti": "^1.9.4",
+    "framer-motion": "^14.9.0",
+    "gsap": "^3.15.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tailwindcss": "^4.3.3",
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@types/three": "^0.187.0",
+    "flag-icons": "^7.6.0",
+    "sharp": "^0.35.5",
+    "svgo": "^4.1.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5",
+    "vite-plugin-pwa": "^2.0.0",
+    "vite-plugin-singlefile": "^2.3.4"
+  }
+}
